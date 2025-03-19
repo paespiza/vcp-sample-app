@@ -37,14 +37,16 @@ const nextConfig = {
   },
 };
 // export default nextConfig;
-const configWithOverlay = BuilderDevTools()(
-  withHydrationOverlay({
-    /**
-     * Optional: `appRootSelector` is the selector for the root element of your app. By default, it is `#__next` which works
-     * for Next.js apps with pages directory. If you are using the app directory, you should change this to `main`.
-     */
-    appRootSelector: "main",
-  })(nextConfig)
-);
+const isProd = process.env.NODE_ENV === "production";
+
+// Only use hydration overlay in development
+const configWithOverlay = isProd
+  ? nextConfig
+  : BuilderDevTools()(
+      withHydrationOverlay({
+        appRootSelector: "main",
+      })(nextConfig)
+    );
 
 export default configWithOverlay;
+
