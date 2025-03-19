@@ -6,47 +6,27 @@ const nextConfig = {
   images: {
     dangerouslyAllowSVG: true,
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'cdn.builder.io',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'shopifycdn.com',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'cdn.shopify.com',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'burst.shopifycdn.com',
-        port: '',
-        pathname: '/**',
-      },
+      { protocol: "https", hostname: "cdn.builder.io", pathname: "/**" },
+      { protocol: "https", hostname: "shopifycdn.com", pathname: "/**" },
+      { protocol: "https", hostname: "cdn.shopify.com", pathname: "/**" },
+      { protocol: "https", hostname: "burst.shopifycdn.com", pathname: "/**" },
     ],
   },
   experimental: {
     serverComponentsExternalPackages: ["isolated-vm"],
   },
 };
-// export default nextConfig;
-const isProd = process.env.NODE_ENV === "production";
 
-// Only use hydration overlay in development
-const configWithOverlay = isProd
-  ? nextConfig
-  : BuilderDevTools()(
+// Check if we are in development mode
+const isDev = process.env.NODE_ENV === "development";
+
+// Conditionally apply withHydrationOverlay only in development
+const configWithOverlay = isDev
+  ? BuilderDevTools()(
       withHydrationOverlay({
         appRootSelector: "main",
       })(nextConfig)
-    );
+    )
+  : BuilderDevTools()(nextConfig);
 
 export default configWithOverlay;
-
