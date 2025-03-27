@@ -1,12 +1,8 @@
-'use client';
+import { builder, BuilderComponent } from '@builder.io/react';
 
-import React from "react"; // ✅ Explicit import to avoid createContext error
-import { builder } from "@builder.io/sdk";
-import { RenderBuilderContent } from "@/components/builder";
+builder.init('f154bf67d18c42acae68604617b93b4b');
 
-builder.init("f154bf67d18c42acae68604617b93b4b");
-
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';
 
 interface PageProps {
   params: {
@@ -18,7 +14,7 @@ export default async function BlogPost({ params }: PageProps) {
   const slug = params.slug;
 
   const content = await builder
-    .get("blog-posts", {
+    .get('blog-posts', {
       userAttributes: {
         urlPath: `/blog/${slug}`,
       },
@@ -28,23 +24,20 @@ export default async function BlogPost({ params }: PageProps) {
 
   if (!content) {
     return (
-      <div style={{ padding: "2rem", textAlign: "center" }}>
+      <div style={{ padding: '2rem', textAlign: 'center' }}>
         <h1>Page not found</h1>
       </div>
     );
   }
 
   return (
-    <main style={{ padding: "2rem" }}>
-      <h1>{content.data?.title || "Untitled Blog Post"}</h1>
+    <main style={{ padding: '2rem' }}>
+      <h1>{content.data?.title || 'Untitled Blog Post'}</h1>
       <p>
-        <strong>By:</strong> {content.data?.author || "Unknown"} |{" "}
-        <strong>Date:</strong> {content.data?.date || "N/A"}
+        <strong>By:</strong> {content.data?.author || 'Unknown'} |{' '}
+        <strong>Date:</strong> {content.data?.date || 'N/A'}
       </p>
-      <RenderBuilderContent
-        content={content}
-        model="blog-posts"
-      />
+      <BuilderComponent model="blog-posts" content={content} />
     </main>
   );
 }
