@@ -1,11 +1,12 @@
-import { builder } from "@builder.io/sdk";
+import { builder } from "@builder.io/react"; //
 import { Header } from "@/components/Layout/Header";
 import "./globals.css";
 import Footer from "@/components/Layout/Footer";
 import { RenderBuilderContent } from "@/components/builder";
 import QueryProvider from "@/components/QueryProvider";
 
-builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
+builder.init("f154bf67d18c42acae68604617b93b4b");
+
 
 export default async function RootLayout({
   children,

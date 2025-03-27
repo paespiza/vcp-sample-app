@@ -10,8 +10,10 @@ import IconCard from "./components/Card/IconCard";
 import ImageHero from "./components/Hero/ImageHero";
 import SplitHero from "./components/Hero/SplitHero";
 import TextHero from "./components/Hero/TextHero";
+import { BlogArticleTemplate } from "./components/BlogArticleTemplate";
 
-builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
+
+builder.init("f154bf67d18c42acae68604617b93b4b");
 
 Builder.register("editor.settings", {
   styleStrictMode: false,
@@ -374,4 +376,12 @@ Builder.registerComponent(Footer, {
 
 Builder.registerComponent(Header, {
   name: "Header",
+});
+
+Builder.registerComponent(BlogArticleTemplate, {
+  name: "Blog article template", // This must exactly match the model name
+  inputs: [
+    { name: "title", type: "text" },
+    { name: "content", type: "richText" },
+  ],
 });
