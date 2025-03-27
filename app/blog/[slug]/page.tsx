@@ -1,3 +1,6 @@
+'use client';
+
+import React from "react"; // ✅ Explicit import to avoid createContext error
 import { builder } from "@builder.io/sdk";
 import { RenderBuilderContent } from "@/components/builder";
 
