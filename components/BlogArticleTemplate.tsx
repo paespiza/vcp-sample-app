@@ -1,16 +1,15 @@
-import React from "react";
+import React from 'react';
 
-export function BlogArticleTemplate({
-  title,
-  content,
-}: {
+interface BlogArticleTemplateProps {
   title?: string;
   content?: string;
-}) {
+}
+
+export function BlogArticleTemplate({ title, content }: BlogArticleTemplateProps) {
   return (
     <article>
       <h1>{title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: content || "" }} />
+      <div dangerouslySetInnerHTML={{ __html: content || '' }} />
     </article>
   );
 }
