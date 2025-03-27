@@ -1,7 +1,7 @@
 import { builder } from "@builder.io/sdk";
 import { RenderBuilderContent } from "../../components/builder";
 
-builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
+builder.init("f154bf67d18c42acae68604617b93b4b");
 
 interface PageProps {
   params: {
