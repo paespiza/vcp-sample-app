@@ -1,6 +1,6 @@
 "use client";
 import "@builder.io/widgets";
-/*
+
 import { builder, Builder, withChildren } from "@builder.io/react";
 import { Button } from "./components/ui/button";
 import Counter from "./components/Counter/Counter";
@@ -12,9 +12,9 @@ import ImageHero from "./components/Hero/ImageHero";
 import SplitHero from "./components/Hero/SplitHero";
 import TextHero from "./components/Hero/TextHero";
 import { BlogArticleTemplate } from "./components/BlogArticleTemplate";
-*/
 
 builder.init("f154bf67d18c42acae68604617b93b4b");
+
 
 Builder.register("editor.settings", {
   styleStrictMode: false,
