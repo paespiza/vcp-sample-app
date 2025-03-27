@@ -31,20 +31,10 @@ export default async function BlogPost({ params }: PageProps) {
     );
   }
 
-  const builderContent = content?.data?.builderContent;
-
   return (
-    <main style={{ padding: "2rem" }}>
-      <h1>{content.data?.title}</h1>
-      <p>
-        <strong>By:</strong> {content.data?.author} | <strong>Date:</strong> {content.data?.date}
-      </p>
-      {builderContent && (
-        <RenderBuilderContent
-          content={builderContent}
-          model="blog-posts"
-        />
-      )}
-    </main>
+    <RenderBuilderContent
+      content={content}
+      model="blog-posts"
+    />
   );
 }
