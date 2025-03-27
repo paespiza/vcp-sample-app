@@ -15,7 +15,7 @@ export default async function BlogPost({ params }: PageProps) {
   const slug = params.slug;
 
   const content = await builder
-    .get("blog-article", {
+    .get("blog-posts", {
       userAttributes: {
         urlPath: `/blog/${slug}`,
       },
@@ -42,7 +42,7 @@ export default async function BlogPost({ params }: PageProps) {
       {builderContent && (
         <RenderBuilderContent
           content={builderContent}
-          model="blog-article-template"
+          model="blog-posts"
         />
       )}
     </main>
