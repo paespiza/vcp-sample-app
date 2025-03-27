@@ -32,9 +32,16 @@ export default async function BlogPost({ params }: PageProps) {
   }
 
   return (
-    <RenderBuilderContent
-      content={content}
-      model="blog-posts"
-    />
+    <main style={{ padding: "2rem" }}>
+      <h1>{content.data?.title || "Untitled Blog Post"}</h1>
+      <p>
+        <strong>By:</strong> {content.data?.author || "Unknown"} |{" "}
+        <strong>Date:</strong> {content.data?.date || "N/A"}
+      </p>
+      <RenderBuilderContent
+        content={content}
+        model="blog-posts"
+      />
+    </main>
   );
 }
