@@ -1,42 +1,43 @@
-import { builder } from '@builder.io/sdk';
-import { BlogArticleTemplate } from '@/components/BlogArticleTemplate';
+"use client";
 
-builder.init('f154bf67d18c42acae68604617b93b4b');
+import { BuilderComponent, builder } from "@builder.io/react";
+import { useEffect, useState } from "react";
+import { notFound } from "next/navigation";
+import { Metadata } from "next";
 
-export const dynamic = 'force-dynamic';
+// We can't use generateMetadata in a client component, so we'll set the title dynamically
+export default function BlogPost({ params }: { params: { slug: string } }) {
+  const [content, setContent] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
-interface PageProps {
-  params: {
-    slug: string;
-  };
-}
+  useEffect(() => {
+    async function fetchContent() {
+      try {
+        const data = await builder.get("blog-posts", { url: `/blog/${params?.slug}` }).promise();
+        if (!data) {
+          notFound();
+        }
+        setContent(data);
 
-export default async function BlogPost({ params }: PageProps) {
-  const slug = params.slug;
+        // Dynamically set the page title
+        document.title = data.data?.title || "Blog post not found";
+      } catch (error) {
+        console.error("Error fetching Builder.io content:", error);
+        notFound();
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchContent();
+  }, [params?.slug]);
 
-  const content = await builder
-    .get('blog-posts', {
-      userAttributes: {
-        urlPath: `/blog/${slug}`,
-      },
-      options: { includeRefs: true, noTargeting: true },
-    })
-    .toPromise();
-
-  if (!content) {
-    return (
-      <div style={{ padding: '2rem', textAlign: 'center' }}>
-        <h1>Page not found</h1>
-      </div>
-    );
+  if (loading) {
+    return <div>Loading...</div>;
   }
 
-  const title = content?.data?.title || 'Untitled Blog Post';
-  const htmlContent = content?.data?.body || '';
+  if (!content) {
+    return null; // notFound() will already be called if content is null
+  }
 
-  return (
-    <main style={{ padding: '2rem' }}>
-      <BlogArticleTemplate title={title} content={htmlContent} />
-    </main>
-  );
+  return <BuilderComponent model="blog-posts" content={content} />;
 }

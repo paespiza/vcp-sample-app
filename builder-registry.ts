@@ -1,6 +1,4 @@
 "use client";
-import "@builder.io/widgets";
-
 import { builder, Builder, withChildren } from "@builder.io/react";
 import { Button } from "./components/ui/button";
 import Counter from "./components/Counter/Counter";
@@ -12,9 +10,11 @@ import ImageHero from "./components/Hero/ImageHero";
 import SplitHero from "./components/Hero/SplitHero";
 import TextHero from "./components/Hero/TextHero";
 import { BlogArticleTemplate } from "./components/BlogArticleTemplate";
+import { useEffect } from "react";
 
-builder.init("f154bf67d18c42acae68604617b93b4b");
-
+useEffect(() => {
+  builder.init("f154bf67d18c42acae68604617b93b4b");
+}, []);
 
 Builder.register("editor.settings", {
   styleStrictMode: false,
@@ -31,10 +31,7 @@ Builder.register("editor.settings", {
       { name: "Background", value: "var(--color-background, #ffffff)" },
       { name: "Text", value: "var(--color-primary, #000000)" },
       { name: "Text Muted", value: "var(--color-muted, #e2e8f0)" },
-      {
-        name: "Background Light",
-        value: "var(--color-background-light, #FAFAFA)",
-      },
+      { name: "Background Light", value: "var(--color-background-light, #FAFAFA)" },
     ],
     spacing: [
       { name: "Large", value: "var(--space-large, 20px)" },
@@ -76,12 +73,10 @@ Builder.register("insertMenu", {
     { name: "SplitHero" },
     { name: "HeroWithChildren" },
   ],
-  // priority: 2,
 });
 Builder.register("insertMenu", {
   name: "Cards",
   items: [{ name: "IconCard" }, { name: "ProductCard" }],
-  // priority: 3,
 });
 if (Builder.isBrowser) {
   if (builder.editingModel === "homepage") {
@@ -102,8 +97,7 @@ Builder.register("insertMenu", {
 
 Builder.registerComponent(Counter, {
   name: "Counter",
-  image:
-    "https://cdn.builder.io/api/v1/image/assets%2Fa87584e551b6472fa0f0a2eb10f2c0ff%2F000c4b516154412498592db34d340789",
+  image: "https://cdn.builder.io/api/v1/image/assets%2Fa87584e551b6472fa0f0a2eb10f2c0ff%2F000c4b516154412498592db34d340789",
   inputs: [
     {
       name: "initialCount",
@@ -114,8 +108,7 @@ Builder.registerComponent(Counter, {
 
 Builder.registerComponent(SplitHero, {
   name: "SplitHero",
-  image:
-    "https://cdn.builder.io/api/v1/image/assets%2Fa87584e551b6472fa0f0a2eb10f2c0ff%2F87697e0b85624a38a7535fff9bdb744b",
+  image: "https://cdn.builder.io/api/v1/image/assets%2Fa87584e551b6472fa0f0a2eb10f2c0ff%2F87697e0b85624a38a7535fff9bdb744b",
   inputs: [
     {
       name: "imageAlignment",
@@ -150,8 +143,7 @@ Builder.registerComponent(SplitHero, {
     {
       name: "image",
       type: "file",
-      defaultValue:
-        "https://cdn.builder.io/api/v1/image/assets%2Fa87584e551b6472fa0f0a2eb10f2c0ff%2F0cde6f8ddd9d482fad53266f8ee0f3ce",
+      defaultValue: "https://cdn.builder.io/api/v1/image/assets%2Fa87584e551b6472fa0f0a2eb10f2c0ff%2F0cde6f8ddd9d482fad53266f8ee0f3ce",
       required: true,
     },
     {
@@ -169,8 +161,7 @@ Builder.registerComponent(SplitHero, {
     {
       name: "subTitle",
       type: "richText",
-      defaultValue:
-        "<p>Create impactful, bold silhouettes in our chic, cozy classics</p>",
+      defaultValue: "<p>Create impactful, bold silhouettes in our chic, cozy classics</p>",
     },
     {
       name: "hasCTA",
@@ -203,8 +194,7 @@ Builder.registerComponent(SplitHero, {
 
 Builder.registerComponent(IconCard, {
   name: "IconCard",
-  image:
-    "https://cdn.builder.io/api/v1/image/assets%2Fa87584e551b6472fa0f0a2eb10f2c0ff%2Fa1602969eefa459cbc1cc4e9bff96555",
+  image: "https://cdn.builder.io/api/v1/image/assets%2Fa87584e551b6472fa0f0a2eb10f2c0ff%2Fa1602969eefa459cbc1cc4e9bff96555",
   inputs: [
     {
       name: "alignment",
@@ -224,14 +214,12 @@ Builder.registerComponent(IconCard, {
     {
       name: "description",
       type: "richText",
-      defaultValue:
-        "<p>Give developers and marketers an AI-powered platform to quickly transform designs into optimized web and mobile experiences.</p>",
+      defaultValue: "<p>Give developers and marketers an AI-powered platform to quickly transform designs into optimized web and mobile experiences.</p>",
     },
     {
       name: "icon",
       type: "file",
-      defaultValue:
-        "https://cdn.builder.io/static/media/builder-logo.bff0faae.png",
+      defaultValue: "https://cdn.builder.io/static/media/builder-logo.bff0faae.png",
       required: true,
     },
     {
@@ -245,8 +233,7 @@ Builder.registerComponent(IconCard, {
 
 Builder.registerComponent(TextHero, {
   name: "TextHero",
-  image:
-    "https://cdn.builder.io/api/v1/image/assets%2Fa87584e551b6472fa0f0a2eb10f2c0ff%2F6c33301bb9e94d46ad293b704457b991",
+  image: "https://cdn.builder.io/api/v1/image/assets%2Fa87584e551b6472fa0f0a2eb10f2c0ff%2F6c33301bb9e94d46ad293b704457b991",
   inputs: [
     {
       name: "subTitle",
@@ -263,8 +250,7 @@ Builder.registerComponent(TextHero, {
 
 Builder.registerComponent(ImageHero, {
   name: "ImageHero",
-  image:
-    "https://cdn.builder.io/api/v1/image/assets%2Fa87584e551b6472fa0f0a2eb10f2c0ff%2F1da6aa719e0648b481ccd964186a4bcb",
+  image: "https://cdn.builder.io/api/v1/image/assets%2Fa87584e551b6472fa0f0a2eb10f2c0ff%2F1da6aa719e0648b481ccd964186a4bcb",
   inputs: [
     {
       name: "title",
@@ -283,8 +269,7 @@ Builder.registerComponent(ImageHero, {
       name: "backgroundImage",
       type: "file",
       required: true,
-      defaultValue:
-        "https://cdn.builder.io/api/v1/image/assets%2Fa87584e551b6472fa0f0a2eb10f2c0ff%2F61c4f304ac9448b1ad741b83de17e48a",
+      defaultValue: "https://cdn.builder.io/api/v1/image/assets%2Fa87584e551b6472fa0f0a2eb10f2c0ff%2F61c4f304ac9448b1ad741b83de17e48a",
     },
     {
       name: "buttonLink",
@@ -314,8 +299,7 @@ Builder.registerComponent(ImageHero, {
 Builder.registerComponent(withChildren(HeroWithChildren), {
   name: "HeroWithChildren",
   canHaveChildren: true,
-  image:
-    "https://cdn.builder.io/api/v1/image/assets%2Fa87584e551b6472fa0f0a2eb10f2c0ff%2F2bbe97f46ba14868a6925faf5cbb8d18",
+  image: "https://cdn.builder.io/api/v1/image/assets%2Fa87584e551b6472fa0f0a2eb10f2c0ff%2F2bbe97f46ba14868a6925faf5cbb8d18",
   inputs: [
     {
       name: "childBlocks",
@@ -351,16 +335,13 @@ Builder.registerComponent(withChildren(Button), {
       "component.name": { $in: ["Text"] },
     },
   },
-  image:
-    "https://cdn.builder.io/api/v1/image/assets%2Fa87584e551b6472fa0f0a2eb10f2c0ff%2F5803f6cb27764a339296458c0056dc33",
+  image: "https://cdn.builder.io/api/v1/image/assets%2Fa87584e551b6472fa0f0a2eb10f2c0ff%2F5803f6cb27764a339296458c0056dc33",
   inputs: [
     {
       name: "children",
       type: "string",
       hideFromUI: true,
-      meta: {
-        ts: "ReactNode",
-      },
+      // Remove the meta property
     },
     {
       name: "variant",
@@ -380,7 +361,7 @@ Builder.registerComponent(Header, {
 });
 
 Builder.registerComponent(BlogArticleTemplate, {
-  name: "Blog article template", // This must exactly match the model name
+  name: "Blog article template",
   inputs: [
     { name: "title", type: "text" },
     { name: "content", type: "richText" },
