@@ -3,6 +3,7 @@ import { RenderBuilderContent } from "../components/builder";
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
+console.log(process.env.BUILDER_API_KEY)
 
 interface PageProps {
   params: {
