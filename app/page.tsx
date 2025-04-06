@@ -3,6 +3,8 @@ import { RenderBuilderContent } from "../components/builder";
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
+// test comment
+
 interface PageProps {
   params: {
     page: string[];
