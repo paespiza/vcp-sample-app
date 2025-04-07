@@ -10,6 +10,7 @@ import IconCard from "./components/Card/IconCard";
 import ImageHero from "./components/Hero/ImageHero";
 import SplitHero from "./components/Hero/SplitHero";
 import TextHero from "./components/Hero/TextHero";
+import BlogPost from './components/Blog/BlogPost';
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
@@ -374,4 +375,53 @@ Builder.registerComponent(Footer, {
 
 Builder.registerComponent(Header, {
   name: "Header",
+});
+
+Builder.registerComponent(BlogPost, {
+  name: 'BlogPost',
+  image: 'https://cdn.builder.io/api/v1/image/assets%2Fa87584e551b6472fa0f0a2eb10f2c0ff%2Fblog-post-icon',
+  inputs: [
+    {
+      name: 'title',
+      type: 'string',
+      required: true,
+    },
+    {
+      name: 'slug',
+      type: 'string',
+      required: true,
+    },
+    {
+      name: 'image',
+      type: 'file',
+      required: true,
+    },
+    {
+      name: 'date',
+      type: 'date',
+      required: true,
+    },
+    {
+      name: 'content',
+      type: 'html',
+      required: true,
+    },
+    {
+      name: 'blurb',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'author',
+      type: 'reference',
+      model: 'author',
+      required: true,
+    },
+    {
+      name: 'language',
+      type: 'string',
+      required: true,
+    },
+  ],
+  models: ['blog-template'],
 });
