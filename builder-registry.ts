@@ -423,5 +423,5 @@ Builder.registerComponent(BlogPost, {
       required: true,
     },
   ],
-  models: ['blog-template'],
+  models: ['blog-post'],
 });
