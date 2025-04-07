@@ -17,7 +17,7 @@ builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 Builder.register("editor.settings", {
   styleStrictMode: false,
   allowOverridingTokens: true,
-  models: ["page"],
+  models: ["page", "blog-post", "blog-template"],
   designTokens: {
     colors: [
       { name: "Primary", value: "var(--color-primary, #000000)" },
@@ -423,5 +423,13 @@ Builder.registerComponent(BlogPost, {
       required: true,
     },
   ],
-  models: ['blog-post'],
+  models: ['blog-post', 'blog-template'],
+});
+
+// Add Blog Templates to Insert Menu
+Builder.register('insertMenu', {
+  name: 'Blog Components',
+  items: [
+    { name: 'BlogPost' }
+  ],
 });

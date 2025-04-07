@@ -15,8 +15,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   
   const blogPost = await builder
     .get("blog-post", {
-      userAttributes: {
-        urlPath: `/blog/${params.slug}`
+      query: {
+        'data.urlPath': `/blog/${params.slug}`
       },
       options: {
         enrich: true,
@@ -27,7 +27,28 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   console.log('Builder.io response:', blogPost);
 
   if (!blogPost) {
-    console.log('No blog post found');
+    console.log('Not found by data.urlPath, trying legacy format...');
+    
+    // Try the old format that works for existing posts
+    const altBlogPost = await builder
+      .get("blog-post", {
+        userAttributes: {
+          urlPath: `/blog/${params.slug}`
+        },
+        options: {
+          enrich: true,
+        },
+      })
+      .toPromise();
+
+    if (altBlogPost) {
+      return (
+        <div className="min-h-screen bg-white">
+          <RenderBuilderContent content={altBlogPost} model="blog-post" />
+        </div>
+      );
+    }
+    
     return <div>Blog post not found</div>;
   }
 
